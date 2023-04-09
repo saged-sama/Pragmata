@@ -1,6 +1,25 @@
-## Getting Started
+## Pragmata
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Pragmata is a todo list app with which users can keep track of their daily tasks
+
+## Features
+
+In our app, we seek to provide the following features:
+- create new tasks list
+- create new task
+- add task deadline
+- update a task
+- mark as complete
+- remove a tasks list
+- remove a task
+
+## Class Structure
+
+The app will have the following class structure
+- **App**: This is the main app class that extends the JavaFX Application class
+- **Task**: Represents each tasks
+- **TaskList**: Lists some tasks
+- **TaskView**: Handles the _GUI_ of a list
 
 ## Folder Structure
 
@@ -11,8 +30,12 @@ The workspace contains two folders by default, where:
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Language Technologies
 
-## Dependency Management
+_Java, JavaFX, Gluon SceneBuilder_
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Creators
+
+Mahmudul Hasan Sajid <br/>
+Md Emon Khan <br/>
+Sadman Moyeed
