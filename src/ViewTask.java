@@ -24,13 +24,15 @@ public class ViewTask {
             "-fx-font-size: 14px;" +
             "-fx-padding: 10px 20px;"
         );
-        taskDescField.setPrefWidth(400);
+        taskDescField.setPrefWidth(395);
+        taskDescField.setPromptText("Make a quick note...");
         taskDatePicker.setStyle("-fx-background-color: yellow;" +
             "-fx-text-fill: red;" + 
             "-fx-font-size: 14px;" +
             "-fx-padding: 5px 20px;"
         );
         taskDatePicker.setPrefWidth(305);
+        taskDatePicker.setPromptText("Due: DD/MM/YYYY");
         addTaskButton.setOnAction(e->{
             String description = taskDescField.getText();
             LocalDate dueDate = taskDatePicker.getValue();
