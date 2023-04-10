@@ -5,9 +5,9 @@ import javafx.stage.Stage;
 public class App extends Application{
     @Override
     public void start(Stage primaryStage){
-        TaskView taskView = new TaskView();
+        ViewTask ViewTask = new ViewTask();
         primaryStage.setTitle("Pragmata");
-        primaryStage.setScene(taskView.scene);
+        primaryStage.setScene(ViewTask.scene);
         Image icon = new Image(getClass().getResourceAsStream("icon.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.show();

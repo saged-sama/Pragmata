@@ -11,4 +11,8 @@ public class TaskList {
     public void removeTask(int indx){
         tasks.remove(indx);
     }
+
+    public void editTask(int indx, Task task){
+        tasks.set(indx, task);
+    }
 }

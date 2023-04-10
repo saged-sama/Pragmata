@@ -1,24 +1,36 @@
 import java.time.LocalDate;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class TaskView {
+public class ViewTask {
     public TaskList tasklist = new TaskList();
-    Button addTaskButton = new Button("Add Task");
-    Button removeTaskButton = new Button("Remove Task");
+    AddButton addTaskButton = new AddButton("Add Task");
+    RemoveButton removeTaskButton = new RemoveButton("Remove Task");
+    EditButton editTaskButton = new EditButton("Edit Task");
     ListView<String> taskListView = new ListView<>();
     TextField taskDescField = new TextField();
     DatePicker taskDatePicker = new DatePicker();
     VBox root = null;
     public Scene scene = null;
-    public TaskView(){
+    public ViewTask(){
+        taskDescField.setStyle("-fx-background-color: white;" + 
+            "-fx-border-color: black;" +
+            "-fx-border-width: 1px;" +
+            "-fx-text-fill: black;" +
+            "-fx-font-size: 14px;" +
+            "-fx-padding: 10px 20px;"
+        );
         taskDescField.setPrefWidth(400);
-        taskDatePicker.setPrefWidth(300);
+        taskDatePicker.setStyle("-fx-background-color: yellow;" +
+            "-fx-text-fill: red;" + 
+            "-fx-font-size: 14px;" +
+            "-fx-padding: 5px 20px;"
+        );
+        taskDatePicker.setPrefWidth(305);
         addTaskButton.setOnAction(e->{
             String description = taskDescField.getText();
             LocalDate dueDate = taskDatePicker.getValue();
@@ -37,12 +49,22 @@ public class TaskView {
                 taskListView.getItems().remove(selectIndx);
             }
         });
+        editTaskButton.setOnAction(e->{
+            String description = taskDescField.getText();
+            LocalDate dueDate = taskDatePicker.getValue();
+            int selectIndx = taskListView.getSelectionModel().getSelectedIndex();
+            if(selectIndx >= 0){
+                Task task = new Task(description, dueDate);
+                tasklist.editTask(selectIndx, task);
+                taskListView.getItems().set(selectIndx, task.toString());
+            }
+        });
         root = new VBox();
-        scene = new Scene(root, 400, 500);
         root.getChildren().addAll(
             new HBox( new VBox(taskDescField, new HBox(taskDatePicker, addTaskButton))),
             taskListView,
-            removeTaskButton
+            new HBox(removeTaskButton, editTaskButton)
         );
+        scene = new Scene(root, 400, 500);
     }
 }
