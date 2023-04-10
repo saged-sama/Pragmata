@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ViewTask {
-    public TaskList tasklist = new TaskList();
+    TaskList tasklist = new TaskList();
     AddButton addTaskButton = new AddButton("Add Task");
     RemoveButton removeTaskButton = new RemoveButton("Remove Task");
     EditButton editTaskButton = new EditButton("Edit Task");
@@ -25,14 +25,14 @@ public class ViewTask {
             "-fx-padding: 10px 20px;"
         );
         taskDescField.setPrefWidth(395);
-        taskDescField.setPromptText("Make a quick note...");
+        taskDescField.setPromptText("Make a quick task note...");
         taskDatePicker.setStyle("-fx-background-color: yellow;" +
             "-fx-text-fill: red;" + 
             "-fx-font-size: 14px;" +
             "-fx-padding: 5px 20px;"
         );
         taskDatePicker.setPrefWidth(305);
-        taskDatePicker.setPromptText("Due: DD/MM/YYYY");
+        taskDatePicker.setPromptText("Due: MM/DD/YYYY");
         addTaskButton.setOnAction(e->{
             String description = taskDescField.getText();
             LocalDate dueDate = taskDatePicker.getValue();
