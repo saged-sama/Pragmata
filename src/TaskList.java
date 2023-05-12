@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> tasks = new ArrayList<>();
+    List<Task> tasks = new ArrayList<>();
 
     public void addTask(Task task){
         tasks.add(task);
@@ -11,7 +11,6 @@ public class TaskList {
     public void removeTask(int indx){
         tasks.remove(indx);
     }
-
     public void editTask(int indx, Task task){
         tasks.set(indx, task);
     }
