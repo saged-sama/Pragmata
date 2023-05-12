@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
@@ -49,6 +52,13 @@ public class ViewTask {
             String description = taskDescField.getText();
             LocalDate dueDate = taskDatePicker.getValue();
             if (description != null && !description.isEmpty() && dueDate != null) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("tasks.txt", true))) {
+                    writer.write(description + " " + dueDate.toString() + "\n");
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 Task task = new Task(description, dueDate);
                 tasklist.addTask(task);
                 taskListView.getItems().add(task.toString());
@@ -61,6 +71,22 @@ public class ViewTask {
             if (selectIndx >= 0) {
                 tasklist.removeTask(selectIndx);
                 taskListView.getItems().remove(selectIndx);
+                
+                try (BufferedWriter wri = new BufferedWriter(new FileWriter("tasks.txt"))) {
+                    wri.write("");
+                    wri.flush();
+                    wri.close();
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("tasks.txt", true));
+                    for(Task task: tasklist.tasks){
+                        String description = task.getDescription();
+                        LocalDate dueDate = task.getdueDate();
+                        writer.write(description + " " + dueDate.toString() + "\n");
+                    }
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         editTaskButton.setOnAction(e -> {
@@ -71,6 +97,21 @@ public class ViewTask {
                 Task task = new Task(description, dueDate);
                 tasklist.editTask(selectIndx, task);
                 taskListView.getItems().set(selectIndx, task.toString());
+            }
+            try (BufferedWriter wri = new BufferedWriter(new FileWriter("tasks.txt"))) {
+                wri.write("");
+                wri.flush();
+                wri.close();
+                BufferedWriter writer = new BufferedWriter(new FileWriter("tasks.txt", true));
+                for(Task task: tasklist.tasks){
+                    String ddescription = task.getDescription();
+                    LocalDate ddueDate = task.getdueDate();
+                    writer.write(ddescription + " " + ddueDate.toString() + "\n");
+                }
+                writer.flush();
+                writer.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
         });
         markAsReadButton.setOnAction(event -> {
