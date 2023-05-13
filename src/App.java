@@ -13,7 +13,7 @@ public class App extends Application {
         try (BufferedReader reader = new BufferedReader(new FileReader("tasks.txt"))) {
             String line;
             while((line = reader.readLine()) != null) {
-                String[] parts = line.split(" ");
+                String[] parts = line.split("#");
                 String description = parts[0];
                 LocalDate dueDate = LocalDate.parse(parts[1]);
                 Task task = new Task(description, dueDate);
