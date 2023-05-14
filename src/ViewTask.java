@@ -125,7 +125,10 @@ public class ViewTask {
                     }
                 });
                 saveTask();
-            }else if (selectIndx >= 0)warn("Already completed!", "As this task has already been completed, you can't modify it.\nYou can only delete it instead of editing it.");
+            }else if (selectIndx >= 0)warn("Already Completed!", "As This Task Has Already been Completed, You Can't Modify It.\nYou Can Only Delete It Instead of Editing It.");
+            else{
+                warn("No Task Selected", "Please Select the Task You Wish to Edit");
+            }
         });
         markAsCompleteButton.setOnAction(event -> {
             int selectIndx = taskListView.getSelectionModel().getSelectedIndex();
